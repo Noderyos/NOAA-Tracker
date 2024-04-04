@@ -17,6 +17,13 @@ CREATE TABLE pass(
 
 
 ```bash
+# Install dependencies
+sudo apt install rtl_sdr mariadb-server -y
+
+# Secure mariadb install
+mysql_secure_installation
+
+
 # Retrieve project
 git clone https://github.com/Noderyos/NOAA-Tracker /opt/NOAA
 
@@ -28,12 +35,19 @@ source venv/bin/activate
 pip -r requirements.txt
 ```
 
-# Create website service
+
+### Install SatDump
+
+Download last file `_arm64.deb` here : https://github.com/SatDump/SatDump/releases/latest with `wget https://github.com/SatDump/SatDump/releases/download/1.1.4/satdump_1.1.4_arm64.deb` (adapt with version name)
+
+Install it by running `sudo apt install ./satdump_1.1.4_arm64.deb`
+
+
+### Create website service
 
 In `/etc/systemd/system/noaa_web.service`, put
 
 ```
-tee -a /etc/systemd/system/noaa_web.service << END
 [Unit]
 Description=NOAA Capture images website
 After=network.target
@@ -51,7 +65,9 @@ WantedBy=multi-user.target
 Edit file with your personnal information :
 
 > In `/opt/NOAA/website/app.py` with creds of your database
+
 > In `/opt/NOAA/scripts/get_next_pass.py`, edit the last 3 values in function with : your GTM+?, latitude, longitude
+
 
 Setup scan check every minute, run `crontab -e` and add `* * * * * bash /opt/NOAA/scripts/check_pass.sh` at the end
 
@@ -64,3 +80,5 @@ systemctl daemon-reload
 systemctl enable noaa_web
 systemctl start noaa_web
 ```
+
+And ... VOILA, you can access to images at `http://<ip>:5000` ....
