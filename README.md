@@ -68,6 +68,8 @@ Edit file with your personnal information :
 
 > In `/opt/NOAA/scripts/get_next_pass.py`, edit the last 3 values in function with : your GTM+?, latitude, longitude
 
+> In `/opt/NOAA/scripts/check_pass.sh`, edit mysql command with creds of your database
+
 
 Setup scan check every minute, run `crontab -e` and add `* * * * * bash /opt/NOAA/scripts/check_pass.sh` at the end
 
