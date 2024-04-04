@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/static/styles.css">
+	<title>NOAA Images</title>
+</head>
+<body>
+    <div id="navbar">
+        <a href="/">All</a>
+        <a href="/noaa15">NOAA 15</a>
+        <a href="/noaa18">NOAA 18</a>
+        <a href="/noaa19">NOAA 19</a>
+    </div>
+    <div id="content">
+        {% for p in passes %}
+            <div class="pass">
+                <p class="pass-sat">{{ p['satellite'] }}</p>
+                <a href="/details/{{ p['id'] }}">
+                    <img src="/thumbnail/{{ p['id'] }}.png" loading="lazy">
+                </a>
+                <p class="pass-date">{{ p['date'] }}</p>
+                <p class="pass-time">{{ p['start']}} to {{ p['end'] }}</p>
+                <p class="pass-geo">Elevation : {{ p['elevation'] }}°</p>
+            </div>
+        {% endfor %}
+    </div>
+</body>
+</html>

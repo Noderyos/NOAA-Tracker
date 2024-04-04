@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/static/styles.css">
+	<title>NOAA Images</title>
+</head>
+<body>
+    <div id="navbar">
+        <a href="/">All</a>
+        <a href="/noaa15">NOAA 15</a>
+        <a href="/noaa18">NOAA 18</a>
+        <a href="/noaa19">NOAA 19</a>
+    </div>
+    <div id="content">
+        {% for name,file in images %}
+            <div class="pass">
+                <img src="/image/{{ id }}/{{ file }}" loading="lazy">
+                <p class="img-name">{{ name }}</p>
+            </div>
+        {% endfor %}
+    </div>
+</body>
+</html>
