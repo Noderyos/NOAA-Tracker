@@ -4,7 +4,8 @@
 
 ### Run all commands as root
 
-Setup database, create this table : ```sql
+Setup database, create this table : 
+```sql
 CREATE TABLE pass(
    id DATETIME,
    satellite VARCHAR(50),
